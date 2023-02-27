@@ -37,7 +37,7 @@ func putRequest(url string, data io.Reader) string {
 }
 
 func UpdateAllExpenses() {
-	url := os.Getenv("BACKEND_URL")
+	url := os.Getenv("BACKEND_URL_RESET_EXPENSES")
 	fmt.Println("PUT request to: ", url)
 	res := putRequest(url, strings.NewReader("no data"))
 	fmt.Println("Response: ", res)
