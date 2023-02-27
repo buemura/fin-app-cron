@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
 	"strings"
 )
 
@@ -37,8 +36,7 @@ func putRequest(url string, data io.Reader) string {
 }
 
 func UpdateAllExpenses() {
-	url := os.Getenv("BACKEND_URL_RESET_EXPENSES")
-	fmt.Println("PUT request to: ", url)
-	res := putRequest(url, strings.NewReader("no data"))
+	fmt.Println("PUT request to: ", URL)
+	res := putRequest(URL, strings.NewReader("no data"))
 	fmt.Println("Response: ", res)
 }
