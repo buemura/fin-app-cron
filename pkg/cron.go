@@ -10,7 +10,7 @@ import (
 func RunCronJob() {
 	c := gocron.NewScheduler(time.UTC)
 
-	c.Every(5).Seconds().Do(func() {
+	c.Every(1).Month(28).Do(func() {
 		internal.UpdateAllExpenses()
 	})
 
