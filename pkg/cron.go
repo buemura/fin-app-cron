@@ -8,6 +8,10 @@ import (
 	"github.com/go-co-op/gocron"
 )
 
+func init() {
+	internal.LoadEnv()
+}
+
 func RunCronJob() {
 	fmt.Println("Awaiting schedule...")
 
