@@ -1,6 +1,6 @@
 module github.com/buemura/golang-cron-jobs
 
-go 1.19
+go 1.18
 
 require (
 	github.com/aws/aws-lambda-go v1.37.0 // indirect
