@@ -15,3 +15,7 @@ Cron job to reset personal financial app recurrent expenses payment status on ev
 ## Architecture Schema
 
 ![alt text](__docs__/schema.png)
+
+## Author
+
+Bruno Uemura
