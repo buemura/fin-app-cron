@@ -3,6 +3,7 @@ module github.com/buemura/golang-cron-jobs
 go 1.19
 
 require (
+	github.com/aws/aws-lambda-go v1.37.0 // indirect
 	github.com/go-co-op/gocron v1.18.0 // indirect
 	github.com/joho/godotenv v1.5.1 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
