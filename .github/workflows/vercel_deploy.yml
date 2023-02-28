@@ -3,7 +3,6 @@ name: Tests and Deploy
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-  PRISMA_BINARY_TARGET: ${{ secrets.PRISMA_BINARY_TARGET }}
 
 on:
   push:
