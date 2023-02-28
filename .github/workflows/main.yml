@@ -29,6 +29,7 @@ jobs:
         with:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          region: sa-east-1
+          aws_region: ${{ secrets.AWS_REGION }}
           function_name: fin-app-cron
           zip_file: main.zip
+          handler: main
