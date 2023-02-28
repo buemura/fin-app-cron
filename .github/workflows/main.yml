@@ -25,7 +25,7 @@ jobs:
         run: |
           make zip
       - name: Deploy to Lambda
-        uses: appleboy/aws-lambda-action@v0.1.1
+        uses: appleboy/lambda-action@master
         with:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
