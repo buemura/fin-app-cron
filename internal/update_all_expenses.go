@@ -2,13 +2,12 @@ package internal
 
 import (
 	"fmt"
-	"strings"
 
 	"github.com/buemura/golang-cron-jobs/shared"
 )
 
 func UpdateAllExpenses() {
 	fmt.Println("PUT request to: ", URL)
-	res := shared.PutRequest(URL, strings.NewReader("no data"))
+	res := shared.PutRequest(URL, nil)
 	fmt.Println("Response: ", res)
 }
