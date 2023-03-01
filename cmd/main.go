@@ -1,21 +1,14 @@
 package main
 
 import (
-	"context"
-
-	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/buemura/golang-cron-jobs/internal"
+	"github.com/buemura/golang-cron-jobs/pkg"
 )
 
 func init() {
 	internal.LoadEnv()
 }
 
-func execute(ctx context.Context, event interface{}) error {
-	internal.UpdateAllExpenses()
-	return nil
-}
-
 func main() {
-	lambda.Start(execute)
+	pkg.RunCronJob()
 }
