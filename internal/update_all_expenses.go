@@ -6,8 +6,14 @@ import (
 	"github.com/buemura/golang-cron-jobs/shared"
 )
 
-func UpdateAllExpenses() {
+func UpdateAllExpenses() (error) {
 	fmt.Println("PUT request to: ", URL)
-	res := shared.PutRequest(URL, nil)
+	
+	res, err := shared.PutRequest(URL, nil)
+	if err != nil {
+		return err
+	}
+
 	fmt.Println("Response: ", res)
+	return nil
 }

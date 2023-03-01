@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func PutRequest(url string, data io.Reader) string {
+func PutRequest(url string, data io.Reader) (string, error) {
 	client := &http.Client{}
 	var resp *http.Response
 	var bodyBytes []byte
@@ -16,19 +16,21 @@ func PutRequest(url string, data io.Reader) string {
 	req.Header.Set("Content-Type", "application/json")
 	if err != nil {
 		log.Fatal(err)
+		return "", err
 	}
 
 	resp, err = client.Do(req)
 	if err != nil {
 		log.Fatal(err)
+		return "", err
 	}
 	defer resp.Body.Close()
 
 	bodyBytes, err = ioutil.ReadAll(resp.Body)
 	if err != nil {
-		panic(err)
+		return "", err
 	}
 	bodyString := string(bodyBytes)
 
-	return bodyString
+	return bodyString, nil
 }

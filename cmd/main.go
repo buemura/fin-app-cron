@@ -1,8 +1,9 @@
 package main
 
 import (
+	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/buemura/golang-cron-jobs/handlers"
 	"github.com/buemura/golang-cron-jobs/internal"
-	"github.com/buemura/golang-cron-jobs/pkg"
 )
 
 func init() {
@@ -10,5 +11,5 @@ func init() {
 }
 
 func main() {
-	pkg.RunCronJob()
+	lambda.Start(handlers.HandleRequest)
 }
