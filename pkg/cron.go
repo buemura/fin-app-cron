@@ -17,9 +17,13 @@ func RunCronJob() {
 
 	c := gocron.NewScheduler(time.UTC)
 
-	c.Every(1).Month(28).Do(func() {
+	c.Every(5).Minute().Do(func() {
 		internal.UpdateAllExpenses()
 	})
+
+	// c.Every(1).Month(28).Do(func() {
+	// 	internal.UpdateAllExpenses()
+	// })
 
 	c.StartBlocking()
 }
