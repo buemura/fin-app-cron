@@ -21,21 +21,21 @@ func HandleRequest(ctx context.Context, request events.LambdaFunctionURLRequest)
 		if err != nil {
 			resp.Message = "Something went wrong"
 			return events.LambdaFunctionURLResponse{
-				Body:       fmt.Sprint(resp),
+				Body:       fmt.Sprintf("%s", resp),
 				StatusCode: http.StatusInternalServerError,
 			}, nil
 		}
 
 		resp.Message = "Successfully updated expenses"
 		return events.LambdaFunctionURLResponse{
-			Body:       fmt.Sprint(resp),
+			Body:       fmt.Sprintf("%s", resp),
 			StatusCode: http.StatusOK,
 		}, nil
 	}
 
 	resp.Message = "Route not found"
 	return events.LambdaFunctionURLResponse{
-		Body:       fmt.Sprint(resp),
+		Body:       fmt.Sprintf("%s", resp),
 		StatusCode: http.StatusNotFound,
 	}, nil
 }
