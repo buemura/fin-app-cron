@@ -2,11 +2,11 @@ package handlers
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/buemura/golang-cron-jobs/internal"
+	"github.com/buemura/golang-cron-jobs/shared"
 )
 
 type HandlerResponse struct {
@@ -17,29 +17,17 @@ func HandleRequest(ctx context.Context, request events.LambdaFunctionURLRequest)
 	if request.RequestContext.HTTP.Method == "POST" && request.RequestContext.HTTP.Path == "/api/cron" {
 		err := internal.UpdateAllExpenses()
 		if err != nil {
-			resp := HandlerResponse{
+			return shared.HandleLambdaResponse(http.StatusInternalServerError, HandlerResponse{
 				Message: "Something went wrong",
-			}
-			return events.LambdaFunctionURLResponse{
-				Body:       fmt.Sprintf("%s", resp),
-				StatusCode: http.StatusInternalServerError,
-			}, nil
+			})
 		}
 
-		resp := HandlerResponse{
+		return shared.HandleLambdaResponse(http.StatusOK, HandlerResponse{
 			Message: "Successfully updated expenses",
-		}
-		return events.LambdaFunctionURLResponse{
-			Body:       fmt.Sprintf("%s", resp),
-			StatusCode: http.StatusOK,
-		}, nil
+		})
 	}
 
-	resp := HandlerResponse{
+	return shared.HandleLambdaResponse(http.StatusNotFound, HandlerResponse{
 		Message: "Route not found",
-	}
-	return events.LambdaFunctionURLResponse{
-		Body:       fmt.Sprintf("%s", resp),
-		StatusCode: http.StatusNotFound,
-	}, nil
+	})
 }
