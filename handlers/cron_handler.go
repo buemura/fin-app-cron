@@ -14,26 +14,30 @@ type HandlerResponse struct {
 }
 
 func HandleRequest(ctx context.Context, request events.LambdaFunctionURLRequest) (events.LambdaFunctionURLResponse, error) {
-	var resp HandlerResponse
-	
 	if request.RequestContext.HTTP.Method == "POST" && request.RequestContext.HTTP.Path == "/api/cron" {
 		err := internal.UpdateAllExpenses()
 		if err != nil {
-			resp.Message = "Something went wrong"
+			resp := HandlerResponse{
+				Message: "Something went wrong",
+			}
 			return events.LambdaFunctionURLResponse{
 				Body:       fmt.Sprintf("%s", resp),
 				StatusCode: http.StatusInternalServerError,
 			}, nil
 		}
 
-		resp.Message = "Successfully updated expenses"
+		resp := HandlerResponse{
+			Message: "Successfully updated expenses",
+		}
 		return events.LambdaFunctionURLResponse{
 			Body:       fmt.Sprintf("%s", resp),
 			StatusCode: http.StatusOK,
 		}, nil
 	}
 
-	resp.Message = "Route not found"
+	resp := HandlerResponse{
+		Message: "Route not found",
+	}
 	return events.LambdaFunctionURLResponse{
 		Body:       fmt.Sprintf("%s", resp),
 		StatusCode: http.StatusNotFound,
